@@ -12,33 +12,36 @@ import Button from "@material-ui/core/Button";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 
+// const styles = (theme) => ({
+//       ...theme
+// });
 const styles = {
       form: {
-            textAlign: 'center'
-      },
-      image: {
-            margin: '20px auto 20px auto',
-            width: '200px'
-      },
-      pageTitle: {
-            margin: '10px auto 10px auto'
-      },
-      textField: {
-            margin: '10px auto 10px auto'
-      },
-      button: {
-            marginTop: '20px',
-            position: 'relative' // set to allow spinner a position of absolute
-      },
-      customError: {
-            color: 'red',
-            fontSize: '0.8 rem',
-            marginTop: '10px'
-      },
-      progress: {
-            position: 'absolute'
-      }
-};
+            textAlign: "center"
+          },
+          image: {
+            margin: "20px auto 20px auto",
+            width: "200px"
+          },
+          pageTitle: {
+            margin: "10px auto 10px auto"
+          },
+          textField: {
+            margin: "10px auto 10px auto"
+          },
+          button: {
+            marginTop: "20px",
+            position: "relative" // set to allow spinner a position of absolute
+          },
+          customError: {
+            color: "red",
+            fontSize: "0.8 rem",
+            marginTop: "10px"
+          },
+          progress: {
+            position: "absolute"
+          }
+}
 
 class login extends Component {
       constructor() {
@@ -97,11 +100,11 @@ class login extends Component {
                                           name="email" 
                                           type="email" 
                                           label="email"
+                                          className={classes.textField} 
                                           helperText={errors.email}  
                                           error={ errors.email ? true : false }
-                                          className={classes.textField} 
-                                          onChange={this.handleChange} 
                                           value={this.state.email}
+                                          onChange={this.handleChange} 
                                           fullWidth
                                     />
                                     
@@ -110,11 +113,11 @@ class login extends Component {
                                           name="password" 
                                           type="password" 
                                           label="password"
-                                          helperText={errors.password}  
-                                          error={ errors.password ? true : false } 
                                           className={classes.textField} 
+                                          helperText={errors.password}  
+                                          error={ errors.password ? true : false }
+                                          value={this.state.password}  
                                           onChange={this.handleChange} 
-                                          value={this.state.password} 
                                           fullWidth
                                     />
 
@@ -135,7 +138,7 @@ class login extends Component {
                                           )}
                                     </Button>
                                     <br/><br/>
-                                    <small>Dont have an account? Sign up <Link to="/signUp">Here</Link></small>
+                                    <small>Don't have an account? Sign up <Link to="/signup">here</Link></small>
                               </form>
                         </Grid>
                         <Grid item sm/>
