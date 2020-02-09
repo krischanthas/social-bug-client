@@ -5,7 +5,12 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import AuthRoute from "./util/AuthRoute";
 import themefile from "./util/theme";
+import axios from 'axios';
 import "./App.css";
+
+// redux
+import { SET_AUTHENTICATED } from './redux/types';
+import { logOutUser, getUserData } from './redux/actions/userActions';
 
 // material ui
 import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
@@ -19,17 +24,18 @@ import signUp from "./pages/signUp";
 
 const theme = createMuiTheme(themefile);
 
-let authenticated;
 const token = localStorage.FBIdToken;
 if (token) {
     const decodedToken = jwtDecode(token);
 
     // check expiration
     if (decodedToken.exp * 1000 < Date.now()) {
+        store.dispatch(logOutUser())
         window.location.href = "/login";
-        authenticated = false;
     } else {
-        authenticated = true;
+        store.dispatch({ type: SET_AUTHENTICATED});
+        axios.defaults.headers.common['Authorization'] = token;
+        store.dispatch(getUserData());
     }
 }
 
@@ -47,13 +53,11 @@ class App extends Component {
                                     exact
                                     path="/login"
                                     component={login}
-                                    authenticated={authenticated}
                                 />
                                 <AuthRoute
                                     exact
                                     path="/signUp"
                                     component={signUp}
-                                    authenticated={authenticated}
                                 />
                             </Switch>
                         </div>
