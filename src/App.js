@@ -13,7 +13,7 @@ import { SET_AUTHENTICATED } from './redux/types';
 import { logOutUser, getUserData } from './redux/actions/userActions';
 
 // material ui
-import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import jwtDecode from "jwt-decode";
 

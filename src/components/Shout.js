@@ -24,6 +24,9 @@ const styles = {
             objectFit: 'cover'
       }
 }
+// const styles = (theme) => ({
+//       ...theme.spread
+// })
 
 class Shout extends Component {
       render() {
