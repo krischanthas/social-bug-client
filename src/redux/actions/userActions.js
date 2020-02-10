@@ -69,3 +69,15 @@ const setAuthorizationHeader = (token) => {
   axios.defaults.headers.common['Authorization'] = FBIdToken;
 };
 
+// upload profile image action
+export const uploadImage = (formData) => dispatch =>{
+    dispatch({ type: LOADING_USER });
+    axios.post('/user/image', formData)
+        .then(response => {
+            dispatch(getUserData());
+        })
+        .catch(err => {
+            console.log(err);
+        })
+}
+
