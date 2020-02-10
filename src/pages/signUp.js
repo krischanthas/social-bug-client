@@ -176,7 +176,7 @@ class signUp extends Component {
                         <br />
                         <small>
                             Already have an account? Login
-                            <Link to="/login">Here</Link>
+                            <Link to="/login"> Here</Link>
                         </small>
                     </form>
                 </Grid>

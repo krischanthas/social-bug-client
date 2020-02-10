@@ -15,6 +15,7 @@ import LocationOn from "@material-ui/icons/LocationOn";
 import LinkIcon from "@material-ui/icons/Link";
 import CalendarToday from "@material-ui/icons/CalendarToday";
 import EditIcon from "@material-ui/icons/Edit";
+import KeyboardReturn from "@material-ui/icons/KeyboardReturn";
 
 // Redux
 import { connect } from "react-redux";
@@ -34,6 +35,9 @@ class Profile extends Component {
         const fileInput = document.getElementById("image-input");
         fileInput.click();
     };
+    handleLogOut = () => {
+          this.props.logOutUser();
+    }
     render() {
         // nested destructuring example below
         const {
@@ -123,6 +127,14 @@ class Profile extends Component {
                                 Joined {dayjs(createdAt).format("MMM YYYY")}
                             </span>
                         </div>
+                        <Tooltip
+                              title="Logout"
+                              placement="top"
+                        >
+                              <IconButton onClick={this.handleLogOut}>
+                                    <KeyboardReturn color="primary"/>
+                              </IconButton>
+                        </Tooltip>
                     </div>
                 </Paper>
             ) : (
