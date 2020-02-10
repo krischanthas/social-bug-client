@@ -3,6 +3,7 @@ import EditDetails from "./EditDetails";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
+import MyButton from "../util/MyButton";
 // material
 import withStyles from "@material-ui/core/styles/withStyles";
 import Paper from "@material-ui/core/Paper";
@@ -75,17 +76,9 @@ class Profile extends Component {
                                 hidden="hidden"
                                 onChange={this.handleImageChange}
                             />
-                            <Tooltip
-                                title="Edit profile picture"
-                                placement="top"
-                            >
-                                <IconButton
-                                    onClick={this.handleEditPicture}
-                                    className="button"
-                                >
-                                    <EditIcon color="primary" />
-                                </IconButton>
-                            </Tooltip>
+                            <MyButton tip="Edit profile picture" onClick={this.handleEditPicture} btnClassName="button">
+                                <EditIcon color="primary"/>
+                            </MyButton>
                         </div>
                         <hr />
                         <div className="profile-details">
@@ -128,14 +121,9 @@ class Profile extends Component {
                                 Joined {dayjs(createdAt).format("MMM YYYY")}
                             </span>
                         </div>
-                        <Tooltip
-                              title="Logout"
-                              placement="top"
-                        >
-                              <IconButton onClick={this.handleLogOut}>
-                                    <KeyboardReturn color="primary"/>
-                              </IconButton>
-                        </Tooltip>
+                        <MyButton tip="Logout" onClick={this.handleLogOut} btnClassName="button">
+                                <KeyboardReturn color="primary"/>
+                            </MyButton>
                         <EditDetails/>
                     </div>
                 </Paper>
