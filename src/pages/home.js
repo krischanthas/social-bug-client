@@ -1,48 +1,44 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { getShouts } from "../redux/actions/dataActions";
 
-import Profile from '../components/Profile';
-import Shout from '../components/Shout';
-import Grid from '@material-ui/core/Grid';
+import Profile from "../components/Profile";
+import Shout from "../components/Shout";
+import Grid from "@material-ui/core/Grid";
 
 class home extends Component {
-      state = {
-            shouts: null
-      };
+    componentDidMount() {
+        this.props.getShouts();
+    }
 
-      componentDidMount() {
-            axios.get('/shouts')
-                  .then(response => {
-                        console.log(response.data);
-                        this.setState({
-                              shouts: response.data
-                        });
-                  })
-                  .catch(err => {
-                        console.log(err);
-                  });
-      }
+    render() {
+        const { shouts, loading } = this.props.data;
+        const recentShoutsMarkup = !loading ? (
+            shouts.map(shout => <Shout shout={shout} key={shout.shoutId} />)
+        ) : (
+            <p>Loading...</p>
+        );
 
-      render() {
-            const recentShoutsMarkup = this.state.shouts ? (
-                  this.state.shouts.map(shout => {
-                        return <Shout shout={shout} key={shout.shoutId}/>
-                  })
-            ) : (
-                  <p>Loading...</p>
-            );
-
-            return (
-                  <Grid container spacing={10}>
-                        <Grid item sm={8} xs={12}>
-                              {recentShoutsMarkup}
-                        </Grid>
-                        <Grid item sm={4} xs={12}>
-                              <Profile/>
-                        </Grid>
-                  </Grid>
-            )
-      }
+        return (
+            <Grid container spacing={10}>
+                <Grid item sm={8} xs={12}>
+                    {recentShoutsMarkup}
+                </Grid>
+                <Grid item sm={4} xs={12}>
+                    <Profile />
+                </Grid>
+            </Grid>
+        );
+    }
 }
 
-export default home
+home.propTpes = {
+    getShouts: PropTypes.func.isRequired,
+    data: PropTypes.object.isRequiredF
+};
+
+const mapStateToProps = state => ({
+    data: state.data
+});
+export default connect(mapStateToProps, { getShouts })(home);
