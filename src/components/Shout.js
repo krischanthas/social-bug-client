@@ -4,6 +4,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import dayjs from "dayjs";
 import PropTypes from "prop-types";
 import MyButton from "../util/MyButton";
+import DeleteShout from "./DeleteShout";
 
 /* Material ui */
 import Card from "@material-ui/core/Card";
@@ -22,8 +23,9 @@ import { likeShout, unlikeShout } from "../redux/actions/dataActions";
 const styles = theme => ({
       ...theme.spread,
       card: {
+            position: "relative",
             display: "flex",
-            marginBottom: 20
+            marginBottom: 20,
       },
       image: {
             minWidth: 200
@@ -63,7 +65,7 @@ class Shout extends Component {
                         likeCount,
                         commentCount
                   },
-                  user: { authenticated }
+                  user: { authenticated, credentials }
             } = this.props;
             
             const likeButton = !authenticated ? (
@@ -84,6 +86,10 @@ class Shout extends Component {
                   )
             );
 
+            const deleteButton = authenticated && userName === credentials.handle ? (
+                  <DeleteShout shoutId={shoutId}/>
+            ) : null;
+
             return (
                   <Card className={classes.card}>
                         <CardMedia
@@ -101,10 +107,16 @@ class Shout extends Component {
                               >
                                     {userName}
                               </Typography>
+
+                              {deleteButton}
+                              
                               <Typography variant="body2">
                                     {dayjs(createdAt).fromNow()}
                               </Typography>
-                              <Typography variant="body1">{body}</Typography>
+
+                              <Typography variant="body1">
+                                    {body}
+                              </Typography>
 
                               {likeButton}
                               <span>{likeCount} Likes</span>

@@ -3,7 +3,7 @@ import {
       LIKE_SHOUT,
       UNLIKE_SHOUT,
       LOADING_DATA,
-      //DELETE_SHOUT,
+      DELETE_SHOUT,
       //POST_SHOUT,
       //SET_SHOUT,
       //SUBMIT_COMMENT
@@ -37,6 +37,14 @@ export default function(state = initialState, action) {
                   // if (state.shout.shoutId === action.payload.shoutId) {
                   //       state.shout = action.payload;
                   // }
+                  return {
+                        ...state
+                  };
+            case DELETE_SHOUT: 
+                  index = state.shouts.findIndex(
+                        (shout) => shout.shoutId === action.payload
+                  );
+                  state.shouts.splice(index, 1);
                   return {
                         ...state
                   };
