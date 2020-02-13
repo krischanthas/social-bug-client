@@ -1,14 +1,4 @@
-import {
-      SET_SHOUTS,
-      LOADING_DATA,
-      LIKE_SHOUT,
-      UNLIKE_SHOUT,
-      DELETE_SHOUT,
-      LOADING_UI,
-      POST_SHOUT,
-      SET_ERRORS,
-      CLEAR_ERRORS
-} from "../types";
+import { SET_SHOUTS, LOADING_DATA, LIKE_SHOUT, UNLIKE_SHOUT, DELETE_SHOUT, POST_SHOUT, SET_ERRORS, LOADING_UI, CLEAR_ERRORS } from "../types";
 import axios from "axios";
 
 /* Get all shouts */

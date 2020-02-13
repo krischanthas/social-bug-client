@@ -4,7 +4,7 @@ import {
       UNLIKE_SHOUT,
       LOADING_DATA,
       DELETE_SHOUT,
-      POST_SHOUT
+      POST_SHOUT,
       //SET_SHOUT,
       //SUBMIT_COMMENT
 } from "../types";

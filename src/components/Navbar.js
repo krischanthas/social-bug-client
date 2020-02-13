@@ -2,8 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import MyButton from "../util/MyButton";
-import PostShout from "./PostShout";
-
+import PostShout from './PostShout';
 /* Material Ui */
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -23,7 +22,7 @@ class Navbar extends Component {
                     <Toolbar className="nav-container">
                         {authenticated ? (
                             <Fragment>
-                              <PostShout/>
+                                <PostShout/>
                               <MyButton tip="Home">
                                 <Link to="/">
                                   <HomeIcon />
