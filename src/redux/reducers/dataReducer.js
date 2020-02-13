@@ -4,7 +4,7 @@ import {
       UNLIKE_SHOUT,
       LOADING_DATA,
       DELETE_SHOUT,
-      POST_SHOUT,
+      POST_SHOUT
       //SET_SHOUT,
       //SUBMIT_COMMENT
 } from "../types";
@@ -41,10 +41,10 @@ export default function(state = initialState, action) {
                         ...state
                   };
             case DELETE_SHOUT:
-                  index = state.shouts.findIndex(
+                  let deleteThisIndex = state.shouts.findIndex(
                         shout => shout.shoutId === action.payload
                   );
-                  state.shouts.splice(index, 1);
+                  state.shouts.splice(deleteThisIndex, 1);
                   return {
                         ...state
                   };
