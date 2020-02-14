@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import MyButton from "../util/MyButton";
+import withStyles from "@material-ui/core/styles/withStyles";
+
 // matrial ui
 import Button from "@material-ui/core/Button";
-import withStyles from "@material-ui/core/styles/withStyles";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -15,12 +16,14 @@ import CloseIcon from "@material-ui/icons/Close";
 
 // redux
 import { connect } from "react-redux";
-import { postShout } from "../redux/actions/dataActions";
+import { postShout, clearErrors } from "../redux/actions/dataActions";
 
 const styles = theme => ({
       ...theme.spread,
       submitButton: {
-            position: "relative"
+            position: "relative",
+            left: "80%",
+            margin: "2px"
       },
       progressSpinner: {
             position: "absolute"
@@ -28,7 +31,7 @@ const styles = theme => ({
       closeButton: {
             position: "absolute",
             left: "90%",
-            top: "10%"
+            top: "3%"
       }
 });
 class PostShout extends Component {
@@ -57,6 +60,7 @@ class PostShout extends Component {
             this.setState({ open: true });
       };
       handleClose = () => {
+            this.props.clearErrors();
             this.setState({ open: false, errors: {} });
       };
 
@@ -138,6 +142,7 @@ class PostShout extends Component {
 
 PostShout.propTypes = {
       postShout: PropTypes.func.isRequired,
+      clearErrors: PropTypes.func.isRequired,
       UI: PropTypes.object.isRequired,
       classes: PropTypes.object.isRequired
 };
@@ -145,6 +150,6 @@ PostShout.propTypes = {
 const mapStateToProps = state => ({
       UI: state.UI
 });
-export default connect(mapStateToProps, { postShout })(
+export default connect(mapStateToProps, { postShout, clearErrors })(
       withStyles(styles)(PostShout)
 );

@@ -1,4 +1,16 @@
-import { SET_SHOUTS, LOADING_DATA, LIKE_SHOUT, UNLIKE_SHOUT, DELETE_SHOUT, POST_SHOUT, SET_ERRORS, LOADING_UI, CLEAR_ERRORS } from "../types";
+import {
+      SET_SHOUTS,
+      LOADING_DATA,
+      LIKE_SHOUT,
+      UNLIKE_SHOUT,
+      DELETE_SHOUT,
+      POST_SHOUT,
+      SET_ERRORS,
+      LOADING_UI,
+      CLEAR_ERRORS,
+      SET_SHOUT,
+      STOP_LOADING_UI
+} from "../types";
 import axios from "axios";
 
 /* Get all shouts */
@@ -18,15 +30,28 @@ export const getShouts = () => dispatch => {
                   });
             });
 };
-
+/* Get an individual Shout post data */
+export const getShout = shoutId => dispatch => {
+      dispatch({ type: LOADING_UI });
+      axios.get(`/shouts/${shoutId}`).then(response => {
+            dispatch({
+                  type: SET_SHOUT,
+                  payload: response.data
+            });
+            dispatch({ type: STOP_LOADING_UI });
+      })
+      .catch(err => {
+            console.log(err);
+      });
+};
 /* Post a shout */
 export const postShout = newShout => dispatch => {
       dispatch({ type: LOADING_UI });
-      axios.post('/shout', newShout)
+      axios.post("/shout", newShout)
             .then(res => {
-                  dispatch({ 
-                        type: POST_SHOUT, 
-                        payload: res.data 
+                  dispatch({
+                        type: POST_SHOUT,
+                        payload: res.data
                   });
                   dispatch({ type: CLEAR_ERRORS });
             })
@@ -68,4 +93,9 @@ export const deleteShout = shoutId => dispatch => {
             .catch(err => {
                   console.log(err);
             });
+};
+
+/* clear errors */
+export const clearErrors = () => dispatch => {
+      dispatch({ type: CLEAR_ERRORS });
 };
