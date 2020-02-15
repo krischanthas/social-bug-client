@@ -26,7 +26,20 @@ const styles = theme => ({
       ...theme.spread,
       invisibleSeperator: {
             border:'none', 
-            margin: "4"
+            margin: 4
+      },
+      profileImage: {
+            height: 200,
+            maxHeight: 200,
+            borderRadius: "49%",
+            objectFit: "cover"
+      },
+      dialogContent: {
+            padding: 20
+      },
+      closeButton: {
+            position: 'absolute',
+            left: '90%'
       }
 });
 
@@ -63,7 +76,7 @@ class ShoutDialog extends Component {
             const dialogMarkup = loading ? (
                   <CircularProgress size={200} />
             ) : (
-                  <Grid container spacing={16}>
+                  <Grid container spacing={10}>
                         <Grid item sm={5}>
                               <img
                                     src={userImage}
