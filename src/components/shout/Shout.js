@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import relativeTime from "dayjs/plugin/relativeTime";
 import dayjs from "dayjs";
 import PropTypes from "prop-types";
-import MyButton from "../util/MyButton";
+import MyButton from "../../util/MyButton";
 import DeleteShout from "./DeleteShout";
 import ShoutDialog from "./ShoutDialog";
-import LikeButton from "./LikeButton";
+import LikeButton from "../layout/LikeButton";
 
 /* Material ui */
 import Card from "@material-ui/core/Card";

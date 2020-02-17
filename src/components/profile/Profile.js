@@ -3,15 +3,14 @@ import EditDetails from "./EditDetails";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
-import MyButton from "../util/MyButton";
+import MyButton from "../../util/MyButton";
 // material
 import withStyles from "@material-ui/core/styles/withStyles";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import MuiLink from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import Tooltip from "@material-ui/core/Tooltip";
+
 //icons
 import LocationOn from "@material-ui/icons/LocationOn";
 import LinkIcon from "@material-ui/icons/Link";
@@ -21,7 +20,7 @@ import KeyboardReturn from "@material-ui/icons/KeyboardReturn";
 
 // Redux
 import { connect } from "react-redux";
-import { logOutUser, uploadImage } from "../redux/actions/userActions";
+import { logOutUser, uploadImage } from "../../redux/actions/userActions";
 const styles = theme => ({
     ...theme.spread
 });

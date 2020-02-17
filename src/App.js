@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/layout/Navbar";
 import AuthRoute from "./util/AuthRoute";
 import themefile from "./util/theme";
 import axios from 'axios';
