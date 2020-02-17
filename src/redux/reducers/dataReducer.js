@@ -39,9 +39,10 @@ export default function(state = initialState, action) {
                         shout => shout.shoutId === action.payload.shoutId
                   );
                   state.shouts[index] = action.payload;
-                  // if (state.shout.shoutId === action.payload.shoutId) {
-                  //       state.shout = action.payload;
-                  // }
+                  // if the specific shout dialog is open check with store then get details for that post
+                  if (state.shout.shoutId === action.payload.shoutId) {
+                        state.shout = action.payload;
+                  }
                   return {
                         ...state
                   };
