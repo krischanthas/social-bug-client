@@ -9,7 +9,8 @@ import {
       LOADING_UI,
       CLEAR_ERRORS,
       SET_SHOUT,
-      STOP_LOADING_UI
+      STOP_LOADING_UI,
+      SUBMIT_COMMENT
 } from "../types";
 import axios from "axios";
 
@@ -33,16 +34,17 @@ export const getShouts = () => dispatch => {
 /* Get an individual Shout post data */
 export const getShout = shoutId => dispatch => {
       dispatch({ type: LOADING_UI });
-      axios.get(`/shouts/${shoutId}`).then(response => {
-            dispatch({
-                  type: SET_SHOUT,
-                  payload: response.data
+      axios.get(`/shouts/${shoutId}`)
+            .then(response => {
+                  dispatch({
+                        type: SET_SHOUT,
+                        payload: response.data
+                  });
+                  dispatch({ type: STOP_LOADING_UI });
+            })
+            .catch(err => {
+                  console.log(err);
             });
-            dispatch({ type: STOP_LOADING_UI });
-      })
-      .catch(err => {
-            console.log(err);
-      });
 };
 /* Post a shout */
 export const postShout = newShout => dispatch => {
@@ -53,7 +55,7 @@ export const postShout = newShout => dispatch => {
                         type: POST_SHOUT,
                         payload: res.data
                   });
-                  dispatch({ type: CLEAR_ERRORS });
+                  dispatch(clearErrors());
             })
             .catch(err => {
                   dispatch({ type: SET_ERRORS, payload: err.response.data });
@@ -81,6 +83,20 @@ export const unlikeShout = shoutId => dispatch => {
             });
 };
 
+/* Submit Comment */
+export const submitComment = (shoutId, commentData) => dispatch => {
+      axios.post(`/shout/${shoutId}/comment`, commentData)
+            .then(res => {
+                  dispatch({ type: SUBMIT_COMMENT, payload: res.data });
+                  dispatch(clearErrors());
+            })
+            .catch(err => {
+                  dispatch({
+                        type: SET_ERRORS,
+                        payload: err.response.data
+                  });
+            });
+};
 /* delete a shout */
 export const deleteShout = shoutId => dispatch => {
       axios.delete(`/shout/${shoutId}`)

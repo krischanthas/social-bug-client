@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import LikeButton from "../layout/LikeButton";
 import Comments from "./Comments";
+import CommentForm from "./CommentForm";
 
 // material ui
 import Dialog from "@material-ui/core/Dialog";
@@ -21,7 +22,7 @@ import ChatIcon from "@material-ui/icons/Chat";
 
 // redux
 import { connect } from "react-redux";
-import { getShout } from "../../redux/actions/dataActions";
+import { getShout, clearErrors } from "../../redux/actions/dataActions";
 
 const styles = theme => ({
       ...theme.spread,
@@ -62,6 +63,7 @@ class ShoutDialog extends Component {
 
       handleClose = () => {
             this.setState({ open: false });
+            this.props.clearErrors();
       };
 
       render() {
@@ -123,6 +125,7 @@ class ShoutDialog extends Component {
                               <span>{commentCount} comments</span>
                         </Grid>
                         <hr className={classes.visibleSeperator} />
+                        <CommentForm shoutId={shoutId}/>
                         <Comments comments={comment} />
                   </Grid>
             );
@@ -162,6 +165,7 @@ class ShoutDialog extends Component {
 
 ShoutDialog.propTypes = {
       getShout: PropTypes.func.isRequired,
+      clearErrors: PropTypes.func.isRequired,
       shout: PropTypes.object.isRequired,
       shoutId: PropTypes.string.isRequired,
       userName: PropTypes.string.isRequired,
@@ -173,6 +177,6 @@ const mapStateToProps = state => ({
       UI: state.UI
 });
 
-export default connect(mapStateToProps, { getShout })(
+export default connect(mapStateToProps, { getShout, clearErrors })(
       withStyles(styles)(ShoutDialog)
 );

@@ -9,16 +9,25 @@ import Typography from "@material-ui/core/Typography";
 
 const styles = theme => ({
       ...theme.spread,
+      // commentImage: {
+      //       maxWidth: "100%",
+      //       height: "100px",
+      //       objectFit: "cover",
+      //       borderRadius: "20%",
+      //       marginLeft: "30%",
+      //       marginBottom: "20px"
+      // },
+      // commentData: {
+      //       marginLeft: "30px"
+      // }
       commentImage: {
             maxWidth: "100%",
-            height: "100px",
+            height: 100,
             objectFit: "cover",
-            borderRadius: "20%",
-            marginLeft: "30%",
-            marginBottom: "20px"
+            borderRadius: "50%"
       },
       commentData: {
-            marginLeft: "30px"
+            marginLeft: 20
       }
 });
 
@@ -38,7 +47,7 @@ class Comments extends Component {
                                     <Fragment key={createdAt}>
                                           <Grid item sm={12}>
                                                 <Grid container>
-                                                      <Grid item sm={3}>
+                                                      <Grid item sm={2}>
                                                             <img
                                                                   src={
                                                                         userImage
