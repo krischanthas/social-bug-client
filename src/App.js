@@ -21,6 +21,7 @@ import jwtDecode from "jwt-decode";
 import home from "./pages/home";
 import login from "./pages/login";
 import signUp from "./pages/signUp";
+import user from "./pages/user";
 
 const theme = createMuiTheme(themefile);
 
@@ -59,6 +60,7 @@ class App extends Component {
                                     path="/signUp"
                                     component={signUp}
                                 />
+                                <Route exact path="/users/:handle" component={user} />
                             </Switch>
                         </div>
                     </Router>

@@ -169,7 +169,8 @@ ShoutDialog.propTypes = {
       shout: PropTypes.object.isRequired,
       shoutId: PropTypes.string.isRequired,
       userName: PropTypes.string.isRequired,
-      UI: PropTypes.object.isRequired
+      UI: PropTypes.object.isRequired,
+      commentCount: PropTypes.number.isRequired
 };
 
 const mapStateToProps = state => ({

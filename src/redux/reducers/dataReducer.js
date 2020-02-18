@@ -51,6 +51,7 @@ export default function(state = initialState, action) {
                         ...state,
                         shout: {
                               ...state.shout,
+                              commentCount: state.shout.commentCount+1,
                               comment: [action.payload, ...state.shout.comment]
                         }
                   };

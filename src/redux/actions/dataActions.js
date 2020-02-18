@@ -111,6 +111,17 @@ export const deleteShout = shoutId => dispatch => {
             });
 };
 
+export const getUserProfile = userName => dispatch => {
+      dispatch({ type: LOADING_DATA });
+      axios.get(`/users/${userName}`)
+            .then(res => {
+                  dispatch({ type: SET_SHOUTS, payload: res.data.shouts });
+            })
+            .catch(() => {
+                  dispatch({ type: SET_SHOUTS, payload: null });
+            });
+};
+
 /* clear errors */
 export const clearErrors = () => dispatch => {
       dispatch({ type: CLEAR_ERRORS });
