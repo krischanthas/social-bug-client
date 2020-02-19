@@ -4,7 +4,7 @@ import MyButton from "../../util/MyButton";
 import withStyles from "@material-ui/core/styles/withStyles";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
-import LikeButton from "../layout/LikeButton";
+import LikeButton from "./LikeButton";
 import Comments from "./Comments";
 import CommentForm from "./CommentForm";
 
@@ -81,7 +81,7 @@ class ShoutDialog extends Component {
                   },
                   UI: { loading }
             } = this.props;
-
+            
             const dialogMarkup = loading ? (
                   <div className={classes.spinnerDiv}>
                         <CircularProgress size={200} />
@@ -96,6 +96,7 @@ class ShoutDialog extends Component {
                               />
                         </Grid>
                         <Grid item sm={7}>
+                              {/* @username link */}
                               <Typography
                                     color="primary"
                                     variant="h5"
@@ -105,27 +106,34 @@ class ShoutDialog extends Component {
                                     @{userName}
                               </Typography>
                               <hr className={classes.invisibleSeperator} />
-
+                              
+                              {/* Created At */}
                               <Typography variant="body2" color="secondary">
                                     {dayjs(createdAt).format(
                                           "h:mm a, MMM DD YYYY"
                                     )}
                               </Typography>
-
                               <hr className={classes.invisibleSeperator} />
-
+                              
+                              {/* Shout Body */}
                               <Typography variant="body1">{body}</Typography>
-
+                              
+                              {/* Like button */}
                               <LikeButton shoutId={shoutId}/>
                               <span>{likeCount} likes</span>
-
+                              
+                              {/* Comments */}
                               <MyButton tip="comments">
                                     <ChatIcon color="primary"/>
                               </MyButton>
                               <span>{commentCount} comments</span>
                         </Grid>
+
                         <hr className={classes.visibleSeperator} />
+                        {/* Form */}
                         <CommentForm shoutId={shoutId}/>
+
+                        {/* List of comments */}
                         <Comments comments={comment} />
                   </Grid>
             );
@@ -169,8 +177,7 @@ ShoutDialog.propTypes = {
       shout: PropTypes.object.isRequired,
       shoutId: PropTypes.string.isRequired,
       userName: PropTypes.string.isRequired,
-      UI: PropTypes.object.isRequired,
-      commentCount: PropTypes.number.isRequired
+      UI: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

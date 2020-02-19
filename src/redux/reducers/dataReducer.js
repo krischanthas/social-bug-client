@@ -44,7 +44,7 @@ export default function(state = initialState, action) {
                         state.shout = action.payload;
                   }
                   return {
-                        ...state
+                        ...state,
                   };
             case SUBMIT_COMMENT:
                   return {

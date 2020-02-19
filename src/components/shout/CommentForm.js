@@ -63,6 +63,7 @@ class CommentForm extends Component {
                                     onChange={this.handleChange}
                                     className={classes.TextField}
                                     fullWidth
+                                    autoComplete='off'
                               ></TextField>
                               <Button
                                     type="submit"

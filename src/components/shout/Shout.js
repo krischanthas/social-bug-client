@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import MyButton from "../../util/MyButton";
 import DeleteShout from "./DeleteShout";
 import ShoutDialog from "./ShoutDialog";
-import LikeButton from "../layout/LikeButton";
+import LikeButton from "./LikeButton";
 
 /* Material ui */
 import Card from "@material-ui/core/Card";
