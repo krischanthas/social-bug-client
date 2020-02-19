@@ -11,10 +11,14 @@ import { getUserProfile } from "../redux/actions/dataActions";
 
 class user extends Component {
       state = {
-            profile: null
+            profile: null,
+            shoutIdParam: null
       };
       componentDidMount() {
             const userName = this.props.match.params.handle;
+            const shoutId = this.props.match.params.id;
+
+            if (shoutId) this.setState({ shoutIdParam: shoutId });
             this.props.getUserProfile(userName);
             axios.get(`/users/${userName}`)
                   .then(res => {
@@ -26,14 +30,27 @@ class user extends Component {
       }
       render() {
             const { shouts, loading } = this.props.data;
+            const { shoutIdParam } = this.state;
             const recentShoutsMarkup = loading ? (
                   <p>Loading data...</p>
             ) : shouts === null ? (
                   <p>No recent post from this user...</p>
-            ) : (
+            ) : !shoutIdParam ? (
                   shouts.map(shout => (
                         <Shout key={shout.shoutId} shout={shout} />
                   ))
+            ) : (
+                  shouts.map(shout => {
+                        if (shout.shoutId !== shoutIdParam) {
+                              return (
+                                    <Shout key={shout.shoutId} shout={shout} />
+                              );
+                        } else {
+                              return (
+                                    <Shout key={shout.shoutId} shout={shout} openDialog/>
+                              );
+                        }
+                  })
             );
             return (
                   <Grid container spacing={10}>

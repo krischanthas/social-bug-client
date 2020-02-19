@@ -52,16 +52,33 @@ const styles = theme => ({
 
 class ShoutDialog extends Component {
       state = {
-            open: false
+            open: false,
+            newPath: "",
+            oldPath: ""
       };
 
+      componentDidMount() { 
+            // upon rendering, check if ShoutDialog received 'openDialog' prop
+            if (this.props.openDialog) {
+                  this.handleOpen();
+            }
+      }
+
       handleOpen = () => {
-            this.setState({ open: true });
-            // send request to server, retreive Shout post data
+            // change url path when opening a specific shout dialog
+            let oldPath = window.location.pathname;
+            const { userName, shoutId } = this.props;
+            const newPath = `/users/${userName}/shout/${shoutId}`;
+            if(oldPath === newPath) { oldPath = `/users/${userName}`; }
+            window.history.pushState(null, null, newPath);
+
+            this.setState({ open: true, newPath, oldPath });
             this.props.getShout(this.props.shoutId);
       };
 
       handleClose = () => {
+            // change url path to previous path upon closing shout dialog
+            window.history.pushState(null, null, this.state.oldPath);
             this.setState({ open: false });
             this.props.clearErrors();
       };
@@ -81,10 +98,11 @@ class ShoutDialog extends Component {
                   },
                   UI: { loading }
             } = this.props;
-            
-            const dialogMarkup = loading ? (
+
+            // display spinner if loading, otherwise display dialog markup
+            const dialogMarkup = loading ? ( 
                   <div className={classes.spinnerDiv}>
-                        <CircularProgress size={200} />
+                        <CircularProgress size={200} /> 
                   </div>
             ) : (
                   <Grid container spacing={10}>
@@ -106,7 +124,7 @@ class ShoutDialog extends Component {
                                     @{userName}
                               </Typography>
                               <hr className={classes.invisibleSeperator} />
-                              
+
                               {/* Created At */}
                               <Typography variant="body2" color="secondary">
                                     {dayjs(createdAt).format(
@@ -114,24 +132,24 @@ class ShoutDialog extends Component {
                                     )}
                               </Typography>
                               <hr className={classes.invisibleSeperator} />
-                              
+
                               {/* Shout Body */}
                               <Typography variant="body1">{body}</Typography>
-                              
+
                               {/* Like button */}
-                              <LikeButton shoutId={shoutId}/>
+                              <LikeButton shoutId={shoutId} />
                               <span>{likeCount} likes</span>
-                              
+
                               {/* Comments */}
                               <MyButton tip="comments">
-                                    <ChatIcon color="primary"/>
+                                    <ChatIcon color="primary" />
                               </MyButton>
                               <span>{commentCount} comments</span>
                         </Grid>
 
                         <hr className={classes.visibleSeperator} />
                         {/* Form */}
-                        <CommentForm shoutId={shoutId}/>
+                        <CommentForm shoutId={shoutId} />
 
                         {/* List of comments */}
                         <Comments comments={comment} />

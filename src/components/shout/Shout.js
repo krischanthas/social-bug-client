@@ -96,7 +96,9 @@ class Shout extends Component {
                                     <ChatIcon color="primary" />
                               </MyButton>
                               <span>{commentCount} Comments</span>
-                              <ShoutDialog shoutId={shoutId} userName={userName}/>
+
+                              
+                              <ShoutDialog shoutId={shoutId} userName={userName} openDialog={this.props.openDialog}/>
                         </CardContent>
                   </Card>
             );
@@ -105,7 +107,8 @@ class Shout extends Component {
 Shout.propTypes = {
       user: PropTypes.object.isRequired,
       shout: PropTypes.object.isRequired,
-      classes: PropTypes.object.isRequired
+      classes: PropTypes.object.isRequired,
+      openDialog: PropTypes.bool
 };
 const mapStateToProps = state => ({
       user: state.user
