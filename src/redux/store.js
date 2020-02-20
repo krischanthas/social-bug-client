@@ -5,7 +5,7 @@ import dataReducer from "./reducers/dataReducer";
 import uiReducer from "./reducers/uiReducer";
 
 const initialState = {};
-const middleware = [thunk];
+// const middleware = [thunk];
 
 const reducers = combineReducers({
     user: userReducer,
@@ -17,7 +17,7 @@ const store = createStore(
     reducers,
     initialState,
     compose(
-        applyMiddleware(...middleware),
+        applyMiddleware(thunk),
         window.__REDUX_DEVTOOLS_EXTENSION__ &&
             window.__REDUX_DEVTOOLS_EXTENSION__()
     )

@@ -16,10 +16,8 @@ class home extends Component {
 
       render() {
             const { shouts, loading } = this.props.data;
-            const recentShoutsMarkup = !loading ? (
-                  shouts.map(shout => (
-                        <Shout shout={shout} key={shout.shoutId} />
-                  ))
+            let recentShoutsMarkup = !loading && shouts !== undefined ? (
+                  shouts.map(shout => <Shout shout={shout} key={shout.shoutId} />)
             ) : (
                   <ShoutSkeleton/>
             );
@@ -37,9 +35,9 @@ class home extends Component {
       }
 }
 
-home.propTpes = {
+home.propTypes = {
       getShouts: PropTypes.func.isRequired,
-      data: PropTypes.object.isRequiredF
+      data: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
