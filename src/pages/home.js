@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getShouts } from "../redux/actions/dataActions";
+import ShoutSkeleton from "../util/ShoutSkeleton";
+
 
 import Profile from "../components/profile/Profile";
 import Shout from "../components/shout/Shout";
@@ -19,7 +21,7 @@ class home extends Component {
                         <Shout shout={shout} key={shout.shoutId} />
                   ))
             ) : (
-                  <p>Loading...</p>
+                  <ShoutSkeleton/>
             );
 
             return (

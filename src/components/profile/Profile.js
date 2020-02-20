@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import MyButton from "../../util/MyButton";
+import ProfileSkeleton from "../../util/ProfileSkeleton";
+
 // material
 import withStyles from "@material-ui/core/styles/withStyles";
 import Paper from "@material-ui/core/Paper";
@@ -153,7 +155,7 @@ class Profile extends Component {
                 </Paper>
             )
         ) : (
-            <p>Loading...</p>
+            <ProfileSkeleton/>
         );
         return profileMarkup;
     }
